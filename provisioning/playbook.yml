@@ -1,0 +1,6 @@
+---
+- name: Provision local Machine
+  hosts: localhost
+
+  roles:
+    - neovim

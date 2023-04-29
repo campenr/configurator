@@ -1,0 +1,20 @@
+- name: Install NeoVim
+  ansible.builtin.shell: |
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+    chmod u+x nvim.appimage
+    mv -f nvim.appimage  /home/campenrk/.local/bin
+    ln -sf /home/campenrk/.local/bin/nvim.appimage /home/campenrk/.local/bin/nvim
+
+- name: Check if NeoVim Packer is installed
+  vars:
+      neovim_packer_dir: ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+  ansible.builtin.stat:
+    path: "{{ neovim_packer_dir }}"
+  register: neovim_packer_exists
+
+- name: Install NeoVim Packer
+  vars:
+      neovim_packer_dir: ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+  ansible.builtin.command:
+    git clone --depth 1 https://github.com/wbthomason/packer.nvim  "{{ ~/.local/share/nvim/site/pack/packer/start/packer.nvim }}"
+  when: not neovim_packer_exists.stat.isdir
