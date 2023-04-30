@@ -16,5 +16,5 @@
   vars:
       neovim_packer_dir: ~/.local/share/nvim/site/pack/packer/start/packer.nvim
   ansible.builtin.command:
-    git clone --depth 1 https://github.com/wbthomason/packer.nvim  "{{ ~/.local/share/nvim/site/pack/packer/start/packer.nvim }}"
-  when: not neovim_packer_exists.stat.isdir
+    "git clone --depth 1 https://github.com/wbthomason/packer.nvim  {{ neovim_packer_dir }}"
+  when: not neovim_packer_exists.stat.exists

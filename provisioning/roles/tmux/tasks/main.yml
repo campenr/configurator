@@ -1,0 +1,18 @@
+- name: Install Tmux
+  ansible.builtin.apt:
+    package: tmux
+    state: present
+
+- name: Check if Tmux Plugin Manager is installed
+  vars:
+    tmux_tpm_dir: ~/.config/tmux/plugins/tpm
+  ansible.builtin.stat:
+    path: "{{ tmux_tpm_dir }}"
+  register: tmux_tpm_exists
+
+- name: Install Tmux Plugin Manager
+  vars:
+    tmux_tpm_dir: ~/.config/tmux/plugins/tpm
+  ansible.builtin.command:
+    "git clone https://github.com/tmux-plugins/tpm {{ tmux_tpm_dir }}"
+  when: not tmux_tpm_exists.stat.exists
