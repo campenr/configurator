@@ -1,5 +1,5 @@
-- name: Install core packages
-  ansible.builtin.apt:
-    pkg:
-      - git
-      - htop
+- include: ubuntu.yml
+  when: ansible_os_family == 'Debian'
+
+- include: macos.yml
+  when: ansible_os_family == 'Darwin'
