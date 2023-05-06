@@ -1,7 +1,8 @@
-- name: Install Tmux
-  ansible.builtin.apt:
-    package: tmux
-    state: present
+- include: ubuntu.yml
+  when: ansible_os_family == 'Debian'
+
+- include: macos.yml
+  when: ansible_os_family == 'Darwin'
 
 - name: Check if Tmux Plugin Manager is installed
   vars:
