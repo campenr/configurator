@@ -1,11 +1,5 @@
-- name: Add Deadsnakes Nightly APT repository
-  become: yes
-  ansible.builtin.apt_repository:
-    repo: ppa:deadsnakes
+- include: ubuntu.yml
+  when: ansible_os_family == 'Debian'
 
-- name: Install latest deadsnakes python
-  ansible.builtin.apt:
-    name:
-      - 'python3.10'
-      - 'python3.11'
-    state: latest
+- include: macos.yml
+  when: ansible_os_family == 'Darwin'
