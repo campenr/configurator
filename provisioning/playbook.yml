@@ -3,5 +3,6 @@
   hosts: localhost
 
   roles:
-    - neovim
+    - core
     - tmux
+    - neovim
