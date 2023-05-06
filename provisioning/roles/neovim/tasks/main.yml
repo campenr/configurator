@@ -1,9 +1,8 @@
-- name: Install NeoVim
-  ansible.builtin.shell: |
-    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-    chmod u+x nvim.appimage
-    mv -f nvim.appimage ~/.local/bin
-    ln -sf ~/.local/bin/nvim.appimage ~/.local/bin/nvim
+- include: ubuntu.yml
+  when: ansible_os_family == 'Debian'
+
+- include: macos.yml
+  when: ansible_os_family == 'Darwin'
 
 - name: Check if NeoVim Packer is installed
   vars:
