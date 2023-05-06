@@ -1,5 +1,7 @@
 - name: Install core packages
   community.general.homebrew:
-    pkg:
+    name:
       - git
       - htop
+      - curl
+    state: latest

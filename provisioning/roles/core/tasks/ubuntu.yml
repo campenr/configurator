@@ -3,3 +3,5 @@
     name:
       - git
       - htop
+      - curl
+    state: latest
