@@ -1,0 +1,11 @@
+- name: Add Deadsnakes Nightly APT repository
+  become: yes
+  ansible.builtin.apt_repository:
+    repo: ppa:deadsnakes
+
+- name: Install latest deadsnakes python
+  ansible.builtin.apt:
+    name:
+      - 'python3.10'
+      - 'python3.11'
+    state: latest

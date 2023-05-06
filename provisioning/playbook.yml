@@ -1,8 +1,8 @@
 ---
 - name: Provision local Machine
   hosts: localhost
-
   roles:
     - core
+    - python
     - tmux
     - neovim
