@@ -2,8 +2,8 @@
   ansible.builtin.shell: |
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
     chmod u+x nvim.appimage
-    mv -f nvim.appimage  /home/campenrk/.local/bin
-    ln -sf /home/campenrk/.local/bin/nvim.appimage /home/campenrk/.local/bin/nvim
+    mv -f nvim.appimage ~/.local/bin
+    ln -sf ~/.local/bin/nvim.appimage ~/.local/bin/nvim
 
 - name: Check if NeoVim Packer is installed
   vars:
