@@ -5,4 +5,5 @@
     - core
     - python
     - tmux
+    - shell
     - neovim

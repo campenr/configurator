@@ -1,0 +1,27 @@
+- include: ubuntu.yml
+  when: ansible_os_family == 'Debian'
+
+- include: macos.yml
+  when: ansible_os_family == 'Darwin'
+
+- name: Check if oh my zsh is installed
+  vars:
+      oh_my_zsh_dir: ~/.oh-my-zsh/
+  ansible.builtin.stat:
+    path: "{{ oh_my_zsh_dir }}"
+  register: oh_my_zsh_exists
+
+- name: Install oh my zsh
+  ansible.builtin.command: curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+  when: not oh_my_zsh_exists.stat.exists
+
+- name: Check if powerlevel10k installed
+  vars:
+    pl10k_dir: ~/.oh-my-zsh/custom/themes/powerlevel10k
+  ansible.builtin.stat:
+    path: "{{ pl10k_dir }}"
+  register: pl10k_exists
+
+- name: Install powerlevel10k
+  ansible.builtin.command: git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
+  when: not pl10k_exists.stat.exists
