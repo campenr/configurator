@@ -36,5 +36,5 @@ Declarative machine configuration.
 Run provisioning with:
 
  ```
- ansible-playbook playbook.yml --connection=local -v -K
+ ansible-playbook base.yml --connection=local -v -K
  ```
