@@ -1,0 +1,36 @@
+- name: Ensure fonts directory exists
+  ansible.builtin.file:
+    path: ~/.fonts
+    state: directory
+
+- name: Check if Meslo Nerd Font exists
+  shell: ls ~/.fonts/MesloLGS*
+  register: meslo_nf_exists
+  ignore_errors: yes
+
+- name: Download Meslo Nerd Fonts - Regular
+  ansible.builtin.get_url:
+    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+    dest: ~/.fonts/
+  when: meslo_nf_exists is failed
+
+- name: Download Meslo Nerd Fonts - Bold
+  ansible.builtin.get_url:
+    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+    dest: ~/.fonts/
+  when: meslo_nf_exists is failed
+
+- name: Download Meslo Nerd Fonts - Italic
+  ansible.builtin.get_url:
+    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+    dest: ~/.fonts/
+  when: meslo_nf_exists is failed
+
+- name: Download Meslo Nerd Fonts - Bold Italic
+  ansible.builtin.get_url:
+    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+    dest: ~/.fonts/
+  when: meslo_nf_exists is failed
+
+- name: Rebuild the font cache
+  ansible.builtin.command: fc-cache -fv
