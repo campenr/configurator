@@ -1,3 +1,9 @@
+- name: Install iTerm2
+  community.general.homebrew:
+    name: iterm2
+    state: latest
+  ignore_errors: true  # for some reason this particular package throws when already installed
+
 - name: Install zsh
   community.general.homebrew:
     name: zsh

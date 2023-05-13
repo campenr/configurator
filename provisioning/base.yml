@@ -4,6 +4,6 @@
   roles:
     - core
     - python
-    - tmux
     - shell
+    - tmux
     - neovim
